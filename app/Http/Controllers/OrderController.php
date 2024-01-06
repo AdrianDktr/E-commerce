@@ -12,9 +12,10 @@ use App\Models\Order;
 class OrderController extends Controller
 {
     public function index(){
-        $order=Order::all();
+        $orders=Order::all();
+        // dd($orders);
 
-        return view('');
+        return view('order.index_order',compact('orders'));
     }
 
 
@@ -47,9 +48,38 @@ class OrderController extends Controller
             $cart->delete();
         }
 
-
-
         return redirect()->back();
 
+    }
+
+
+    public function show_detail_order(Order $order){
+
+        return view('order.show_detail_order',compact('order'));
+    }
+
+
+
+    public function receipt(Order $order , Request $request){
+        $file= $request->file('payment_receipt');
+        $imageFileName = time() . '_' . $order->id . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('assets/receipt'), $imageFileName);
+
+        $order->update([
+            'payment_receipt'=>$imageFileName
+        ]);
+
+        // dd($order);
+
+        return redirect()->back();
+    }
+
+    public function confirm_payment(Order $order){
+
+        $order->update([
+           'is_paid'=> true
+        ]);
+
+        return redirect()->back();
     }
 }
