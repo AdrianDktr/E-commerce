@@ -43,3 +43,9 @@ Route::delete('/delete-cart/{cart}', [CartController::class,'delete'])->name('de
 
 //orders
 Route::post('/checkout-order',[OrderController::class, 'checkout'])->name('checkout');
+Route::get('/index-order',[OrderController::class,'index'])->name('index_order');
+Route::get('/show-order/{order}',[OrderController::class, 'show_detail_order'])->name('show_detail_order');
+Route::post('/order-payment/{order}',[OrderController::class, 'receipt'])->name('submit_payment_receipt');
+Route::post('/order-confirm-payment/{order}',[OrderController::class, 'confirm_payment'])->name('confirm_payment');
+
+
