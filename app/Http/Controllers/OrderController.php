@@ -48,7 +48,7 @@ class OrderController extends Controller
             $cart->delete();
         }
 
-        return redirect()->back();
+        return redirect()->route('show_detail_order',$order);
 
     }
 

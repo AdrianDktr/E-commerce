@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
-class profileController extends Controller
+class ProfileController extends Controller
 {
     public function __construct()
     {
@@ -19,4 +20,24 @@ class profileController extends Controller
 
         return view('user.show_profile', compact('user'));
     }
+
+    public function edit_profile(Request $request)
+    {
+        $request->validate([
+            'name' => 'required',
+            'password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = Auth::user();
+
+        $user->update([
+            'name' => $request->name,
+            'password' => Hash::make($request->password),
+        ]);
+
+        // dd($user);
+
+        return redirect()->back();
+    }
+
 }
