@@ -1,38 +1,44 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Edit {{$product->name}}</title>
-</head>
-<body>
-    <form action="{{ route('update_product',$product) }}" method="POST" enctype="multipart/form-data">
-        @method('patch')
-        @csrf
-            <label for="">Name </label>
-            <br>
-            <input type="text" name='name' value="{{ $product->name }}">
-            <br>
-            <label for="">Description</label>
-            <br>
-            <input type="text" name='description' value="{{ $product->description  }}">
-            <br>
-            <label for="">Price</label>
-            <br>
-            <input type="number" name='price' value="{{ $product->price }}">
-            <br>
-            <label for="">Stock</label>
-            <br>
-            <input type="number" name='stock' value="{{ $product->stock }}">
-            <br>
-            <label for="">Image</label>
-            <br>
-            <input type="file" name="image">
-            <br>
-            <button type="submit">update</button>
-    </form>
+@extends('layouts.app')
 
+@section('content')
 
-</body>
-</html>
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card" style="background-color: white;">
+                <div class="card-header">{{ __('Update Product') }}</div>
+
+                <div class="card-body">
+                    <form action="{{ route('update_product', $product) }}" method="POST" enctype="multipart/form-data">
+                        @method('patch')
+                        @csrf
+                        <div class="form-group">
+                            <label for="name">Name</label>
+                            <input type="text" name="name" value="{{ $product->name }}" class="form-control" placeholder="Name">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <input type="text" name="description" value="{{ $product->description }}" placeholder="Description" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="price">Price</label>
+                            <input type="number" name="price" value="{{ $product->price }}" placeholder="Price" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="stock">Stock</label>
+                            <input type="number" name="stock" value="{{ $product->stock }}" class="form-control" placeholder="Stock">
+                        </div>
+                        <div class="form-group">
+                            <label for="image">Image</label>
+                            <input type="file" name="image" class="form-control" accept="image/*">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary mt-3">Update</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@endsection

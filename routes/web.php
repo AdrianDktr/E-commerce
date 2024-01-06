@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,5 +48,9 @@ Route::get('/index-order',[OrderController::class,'index'])->name('index_order')
 Route::get('/show-order/{order}',[OrderController::class, 'show_detail_order'])->name('show_detail_order');
 Route::post('/order-payment/{order}',[OrderController::class, 'receipt'])->name('submit_payment_receipt');
 Route::post('/order-confirm-payment/{order}',[OrderController::class, 'confirm_payment'])->name('confirm_payment');
+
+//user information
+Route::get('/profile',[ProfileController::class,'show_profile'])->name('show_profile');
+Route::post('/edit-profile',[ProfileController::class, 'edit_profile'])->name('edit_profile');
 
 
