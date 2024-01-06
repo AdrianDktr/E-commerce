@@ -17,12 +17,12 @@ class Transaction extends Model
 
     public function order()
     {
-        return $this->hasOne(Order::class);
+        return $this->belongsTo(Order::class);
     }
 
-    public function cart()
+    public function product()
     {
-        return $this->hasMany(Cart::class);
+        return $this->belongsTo(Product::class);
     }
 
 }
