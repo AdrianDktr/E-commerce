@@ -4,13 +4,20 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="background-color: white;">
-                <div class="card-header">{{ __('Update Product') }}</div>
+                <div class="card-header">{{ __('Cart') }}</div>
 
                 <div class="card-body">
-                    @if ($carts->isEmpty())
-                        <p>Your cart is empty.</p>
-                    @else
-                        <div class="card-group m-auto">
+                    @if($errors->any())
+                        @foreach ($errors->all() as $error )
+                        <p> {{ $error }} </p>
+                        @endforeach
+                    @endif
+                        @php
+                            $total_price = 0;
+
+                        @endphp
+
+                    <div class="card-group m-auto">
                             @foreach ($carts as $cart)
                                 <div class="card m-3" style="width: 14rem;">
                                     <img class="card-img-top" src="{{ asset('assets/product_image/' . $cart->product->image) }}">
@@ -33,15 +40,21 @@
                                         </form>
                                     </div>
                                 </div>
+                                @php
+                                $total_price += $cart->product->price * $cart->amount;
+                                @endphp
                             @endforeach
                         </div>
-                        <div class="d-flex justify-content-end">
+                        <div class="d-flex  flex-column justify-content-end align-items-end">
+                            <p>Rp {{ $total_price }}</p>
                             <form action="{{ route('checkout') }}" method="post">
                                 @csrf
-                                <button type="submit" class="btn btn-primary">Checkout</button>
+                                <button type="submit" class="btn btn-primary"  @if ($carts->isEmpty()) disabled  @endif>Checkout
+
+                                </button>
+
                             </form>
                         </div>
-                    @endif
                 </div>
             </div>
         </div>
