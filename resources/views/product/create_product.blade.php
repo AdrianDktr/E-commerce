@@ -4,7 +4,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card" style="background-color: white;">
-                <div class="card-header">{{ __('Update Product') }}</div>
+                <div class="card-header">{{ __('Create Product') }}</div>
 
                 <div class="card-body">
                     <form action="{{ route('store_product') }}" method="post" enctype="multipart/form-data">

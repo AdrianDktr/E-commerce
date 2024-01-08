@@ -13,31 +13,26 @@
 
                 <h5 class="card-title">Order Number {{ $order->id }}</h5>
                     <h6 class="card-subtitle-mb2 text-muted">By {{ $order->user->name }}</h6>
-                    @if ($order->is_paid==true)
-                        <p class="card-text">Paid</p>
-                    @else
-                        <p class="card-text">Unpaid</p>
-                    @endif
+                        @if ($order->is_paid==true)
+                            <p class="card-text">Paid</p>
+                        @else
+                            <p class="card-text">Unpaid</p>
+                        @endif
                     <hr>
                     @foreach ( $order->transactions as $transaction )
-                    <p>
-                        <strong>Product</strong>     : {{ $transaction->product->name }}
-                        <br>
-                        Total Item
-
-                        <strong>                        </strong>
-                        :{{ $transaction->amount }}
-                    </p>
-                    @php
-                        $total_price = $transaction->product->price * $transaction->amount;
-                    @endphp
-
+                        <p>
+                            <strong>Product</strong> : {{ $transaction->product->name }}
+                                <br>
+                                Total Item :{{ $transaction->amount }}
+                        </p>
+                            @php
+                                $total_price = $transaction->product->price * $transaction->amount;
+                            @endphp
                     @endforeach
 
                     <p><strong>Total : Rp {{ $total_price }}</strong></p>
-
                     <hr>
-                    @if ($order->is_paid == false && $order->payment_receipt == null)
+                    @if ($order->is_paid == false && $order->payment_receipt == null && !Auth::user()->is_admin)
                         <form action="{{ route('submit_payment_receipt',$order) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">

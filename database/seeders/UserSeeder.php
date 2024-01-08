@@ -20,6 +20,7 @@ class UserSeeder extends Seeder
                 'name' => 'Dung tak dung dung',
                 'email' => 'dungtakdung@gmail.com',
                 'password' =>  bcrypt('dungtakdungdungBAU'),
+                'is_admin'=>false,
                 // 'profile_picture'=>'',
                 'created_at' => $currentTimestamp,
                 'updated_at' => $currentTimestamp
@@ -28,9 +29,19 @@ class UserSeeder extends Seeder
                 'name' => 'Kevin babi',
                 'email' => 'kevinbabi@gmail.com',
                 'password' =>  bcrypt('kevinBabi'),
+                'is_admin'=>false,
                 // 'profile_picture'=>'',
                 'created_at' => $currentTimestamp,
                 'updated_at' => $currentTimestamp
+            ],
+            [
+                'name' => 'Adrian ',
+                'email' => 'admin@admin.com',
+                'password' =>  bcrypt('Dktr19'),
+                'is_admin'=>true,
+                'created_at' => $currentTimestamp,
+                'updated_at' => $currentTimestamp
+
             ]
 
         ];
