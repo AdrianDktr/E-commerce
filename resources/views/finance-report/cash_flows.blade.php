@@ -13,7 +13,7 @@
 
                     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                     <script>
-                        var months = {!! json_encode($labels) !!};
+                        var months = {!! json_encode(['Jan','Feb','Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']) !!};
                         var cashFlowsData = {!! json_encode($data) !!};
 
                         var ctx = document.getElementById('cashFlowsChart').getContext('2d');

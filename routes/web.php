@@ -41,9 +41,9 @@ Route::middleware(['admin'])->group(function(){
 
 
     Route::post('/order-confirm-payment/{order}',[OrderController::class, 'confirm_payment'])->name('confirm_payment');
+    Route::get('/cash-flow',[CashFlowsController::class, 'index_line_chart'])->name('index_line_chart');
 });
 
-Route::get('/cash-flow',[CashFlowsController::class, 'index_line_chart'])->name('index_line_chart');
 
 Route::middleware(['auth'])->group(function(){
     //product

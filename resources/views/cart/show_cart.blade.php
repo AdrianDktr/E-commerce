@@ -17,6 +17,7 @@
 
                         @endphp
 
+                <button type="button" class="btn btn-info" onclick="window.location='{{ route('index_product') }}'">Add more</button>
                     <div class="card-group m-auto">
                             @foreach ($carts as $cart)
                                 <div class="card m-3" style="width: 14rem;">
@@ -49,11 +50,10 @@
                             <p>Rp {{ $total_price }}</p>
                             <form action="{{ route('checkout') }}" method="post">
                                 @csrf
-                                <button type="submit" class="btn btn-primary"  @if ($carts->isEmpty()) disabled  @endif>Checkout
-
-                                </button>
+                                <button type="submit" class="btn btn-primary"  @if ($carts->isEmpty()) disabled  @endif>Checkout</button>
 
                             </form>
+
                         </div>
                 </div>
             </div>
